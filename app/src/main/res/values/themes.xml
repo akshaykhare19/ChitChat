@@ -23,8 +23,13 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="Random">
-        <item name="android:color">#B4C2EC</item>
+    <style name="ContactCard">
+        <item name="android:background">#B4C2EC</item>
+        <item name="cornerRadius">10dp</item>
+    </style>
+
+    <style name="ActionBar">
+        <item name="android:background">@color/app_theme_light</item>
     </style>
 
 </resources>

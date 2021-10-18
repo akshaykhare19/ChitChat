@@ -25,6 +25,12 @@
 
     <style name="Random">
         <item name="android:color">#262A35</item>
+        <item name="cornerRadius">10dp</item>
+    </style>
+
+
+    <style name="ActionBar">
+        <item name="android:background">@color/app_theme_dark</item>
     </style>
 
 

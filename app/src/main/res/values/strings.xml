@@ -19,4 +19,7 @@
     <string name="hey_there_i_m_using_chitchat">Hey there!, I\'m using ChitChat</string>
     <string name="profile">Profile</string>
     <string name="sign_out">Sign Out</string>
+    <string name="back">Back</string>
+    <string name="type_here">Type here...</string>
+    <string name="send">Send</string>
 </resources>

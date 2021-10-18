@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:elevation="10dp"
-            android:background="@drawable/contact_list_bg">
+            style="@style/ContactCard">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/profile_image_card"
@@ -44,6 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
+                style="@style/Texts"
                 android:text="@{contactsUserModel.userName}"
                 android:layout_margin="10dp"
                 app:layout_constraintLeft_toRightOf="@id/profile_image_card"
@@ -53,7 +54,8 @@
                 android:id="@+id/user_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textSize="16sp"
+                style="@style/Texts"
                 android:text="@string/hey_there_i_m_using_chitchat"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="8dp"
