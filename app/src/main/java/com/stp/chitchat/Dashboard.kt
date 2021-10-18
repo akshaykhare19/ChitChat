@@ -1,7 +1,6 @@
 package com.stp.chitchat
 
 import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.*
@@ -17,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.stp.chitchat.databinding.FragmentDashboardBinding
 
-class Dashboard : Fragment() {
+class Dashboard : Fragment(), ContactClicked {
 
     private lateinit var _binding: FragmentDashboardBinding
     private val binding get() = _binding
@@ -159,7 +158,7 @@ class Dashboard : Fragment() {
                     binding.contactsRecyclerViewList.apply {
                         layoutManager = LinearLayoutManager(requireContext())
                         setHasFixedSize(true)
-                        adapter = ContactsAdapter(appContacts)
+                        adapter = ContactsAdapter(this@Dashboard, appContacts)
                     }
                 }
             }
@@ -169,6 +168,13 @@ class Dashboard : Fragment() {
             }
 
         })
+    }
+
+    override fun onContactClicked(item: UserModel) {
+        val hisId = item.userId
+        val hisName = item.userName
+        val action = DashboardDirections.actionDashboardToChat(hisId, hisName)
+        findNavController().navigate(action)
     }
 
 

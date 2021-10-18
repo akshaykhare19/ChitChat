@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_dashboard_to_userProfile"
             app:destination="@id/userProfile" />
+        <action
+            android:id="@+id/action_dashboard_to_chat"
+            app:destination="@id/chat" />
     </fragment>
     <fragment
         android:id="@+id/login"
@@ -42,4 +45,15 @@
         android:id="@+id/userProfile"
         android:name="com.stp.chitchat.UserProfile"
         android:label="UserProfile" />
+    <fragment
+        android:id="@+id/chat"
+        android:name="com.stp.chitchat.Chat"
+        android:label="Chat" >
+        <argument
+            android:name="uniqueId"
+            app:argType="string" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+    </fragment>
 </navigation>
