@@ -39,4 +39,11 @@ class AppRepository {
         return mutableLiveData!!
     }
 
+    fun updateUserName(name: String) {
+        val databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(appUtil.getUid()!!)
+
+        val map = mapOf("userName" to name)
+        databaseReference.updateChildren(map)
+    }
+
 }

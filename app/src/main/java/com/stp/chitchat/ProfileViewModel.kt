@@ -11,4 +11,8 @@ class ProfileViewModel: ViewModel() {
         return appRepository.getUser()
     }
 
+    fun updateUserName(name: String) {
+        appRepository.updateUserName(name)
+    }
+
 }
