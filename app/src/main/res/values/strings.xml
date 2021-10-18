@@ -13,7 +13,10 @@
     <string name="bio">Bio</string>
     <string name="confirm">Confirm</string>
     <string name="dashboard">Dashboard</string>
-    <string name="sign_out">Sign Out</string>
     <string name="name">Name</string>
     <string name="go_to_profile">Go to Profile</string>
+    <string name="search">Search</string>
+    <string name="hey_there_i_m_using_chitchat">Hey there!, I\'m using ChitChat</string>
+    <string name="profile">Profile</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
