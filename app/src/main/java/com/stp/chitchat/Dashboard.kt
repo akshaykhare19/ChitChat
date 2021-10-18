@@ -44,5 +44,10 @@ class Dashboard : Fragment() {
             val action = DashboardDirections.actionDashboardToLogin()
             findNavController().navigate(action)
         }
+
+        binding.profileBtn.setOnClickListener {
+            val action = DashboardDirections.actionDashboardToUserProfile()
+            findNavController().navigate(action)
+        }
     }
 }

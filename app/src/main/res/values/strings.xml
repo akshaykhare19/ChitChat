@@ -14,4 +14,6 @@
     <string name="confirm">Confirm</string>
     <string name="dashboard">Dashboard</string>
     <string name="sign_out">Sign Out</string>
+    <string name="name">Name</string>
+    <string name="go_to_profile">Go to Profile</string>
 </resources>
