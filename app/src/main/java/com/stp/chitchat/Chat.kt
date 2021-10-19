@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -171,7 +172,7 @@ class Chat : Fragment() {
             }
         }
 
-        binding!!.messagesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding?.messagesRecyclerView?.layoutManager = LinearLayoutManager(requireContext().applicationContext)
         binding!!.messagesRecyclerView.adapter = firebaseRecyclerAdapter
         firebaseRecyclerAdapter!!.startListening()
     }
