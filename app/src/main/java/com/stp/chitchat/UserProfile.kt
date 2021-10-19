@@ -1,6 +1,7 @@
 package com.stp.chitchat
 
 import android.app.Application
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ class UserProfile : Fragment() {
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding
     private lateinit var profileViewModel: ProfileViewModel
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

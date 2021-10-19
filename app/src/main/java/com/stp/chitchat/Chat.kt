@@ -7,12 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.stp.chitchat.databinding.FragmentChatBinding
+import com.stp.chitchat.databinding.ReceivedMessageLayoutBinding
+import com.stp.chitchat.databinding.SentMessageLayoutBinding
 
 class Chat : Fragment() {
 
@@ -26,6 +34,7 @@ class Chat : Fragment() {
     private var chatId: String? = null
     private lateinit var appUtil: AppUtil
     private lateinit var myId: String
+    private var firebaseRecyclerAdapter: FirebaseRecyclerAdapter<MessageModel, MessageViewHolder>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +57,7 @@ class Chat : Fragment() {
             else sendMessage(message)
         }
 
-        if(chatId != null) checkChat(hisId!!)
+        if(chatId == null) checkChat(hisId!!)
 
 
         return binding?.root
@@ -64,6 +73,7 @@ class Chat : Fragment() {
                         val member = dataSnap.child("member").value.toString()
                         if (hisId == member) {
                             chatId = dataSnap.key
+                            readMessage(chatId!!)
                             break
                         }
                     }
@@ -110,5 +120,73 @@ class Chat : Fragment() {
             databaseReference = FirebaseDatabase.getInstance().getReference("ChatList").child(hisId!!).child(chatId!!)
             databaseReference.updateChildren(map)
         }
+    }
+
+    private fun readMessage(chatId: String) {
+        val query = FirebaseDatabase.getInstance().getReference("Chat").child(chatId)
+        val firebaseRecyclerOptions = FirebaseRecyclerOptions
+                .Builder<MessageModel>()
+                .setLifecycleOwner(this)
+                .setQuery(query, MessageModel::class.java)
+                .build()
+        query.keepSynced(true)
+
+        firebaseRecyclerAdapter = object: FirebaseRecyclerAdapter<MessageModel, MessageViewHolder>(firebaseRecyclerOptions) {
+
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
+                var viewDataBinding: ViewDataBinding? = null
+
+                if(viewType == 0)
+                    viewDataBinding = SentMessageLayoutBinding
+                            .inflate(LayoutInflater.from(parent.context),
+                                    parent,
+                                    false)
+
+                if(viewType == 1)
+                    viewDataBinding = ReceivedMessageLayoutBinding
+                            .inflate(LayoutInflater.from(parent.context),
+                                    parent,
+                                    false)
+
+                return MessageViewHolder(viewDataBinding!!)
+            }
+
+            override fun onBindViewHolder(holder: MessageViewHolder, position: Int, messageModel: MessageModel) {
+                if(getItemViewType(position) == 0){
+                    holder.viewDataBinding.setVariable(BR.message, messageModel)
+                }
+                if(getItemViewType(position) == 1) {
+                    holder.viewDataBinding.setVariable(BR.message, messageModel)
+                }
+            }
+
+            //this function is to check, if the message is sent by me or someone else
+            //according to this, it will decide the side of the message
+            override fun getItemViewType(position: Int): Int {
+                val messageModel = getItem(position)
+                return if(messageModel.senderId == myId)
+                    0
+                else
+                    1
+            }
+        }
+
+        binding!!.messagesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding!!.messagesRecyclerView.adapter = firebaseRecyclerAdapter
+        firebaseRecyclerAdapter!!.startListening()
+    }
+
+    class MessageViewHolder(val viewDataBinding: ViewDataBinding) :
+            RecyclerView.ViewHolder(viewDataBinding.root)
+
+    override fun onPause() {
+        super.onPause()
+        if(firebaseRecyclerAdapter != null)
+            firebaseRecyclerAdapter!!.stopListening()
+    }
+
+    fun onBackPressed() {
+        val action = ChatDirections.actionChatToDashboard()
+        findNavController().navigate(action)
     }
 }
