@@ -14,10 +14,44 @@
         android:layout_height="match_parent"
         tools:context=".Chat">
 
-        <include
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
-            layout="@layout/chat_toolbar"/>
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            style="@style/ActionBar"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:contentDescription="@string/back" />
+
+                <TextView
+                    android:id="@+id/his_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Texts"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintLeft_toRightOf="@id/back_btn"
+                    app:layout_constraintTop_toTopOf="@id/back_btn"
+                    app:layout_constraintBottom_toBottomOf="@id/back_btn" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="0dp"
