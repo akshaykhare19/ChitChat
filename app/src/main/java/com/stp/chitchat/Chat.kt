@@ -172,7 +172,7 @@ class Chat : Fragment() {
             }
         }
 
-        binding?.messagesRecyclerView?.layoutManager = LinearLayoutManager(requireContext().applicationContext)
+        binding!!.messagesRecyclerView.layoutManager = LinearLayoutManager(requireContext().applicationContext)
         binding!!.messagesRecyclerView.adapter = firebaseRecyclerAdapter
         firebaseRecyclerAdapter!!.startListening()
     }
