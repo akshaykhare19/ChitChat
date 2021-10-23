@@ -103,6 +103,9 @@ class Login : Fragment() {
                     error = "Field is required!!!"
                     requestFocus()
                 }
+                if(number!!.isNotEmpty()) {
+                    binding!!.phoneNumLayout.clearFocus()
+                }
                 return false
             }
             number!!.length < 10 -> {

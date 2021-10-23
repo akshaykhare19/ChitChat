@@ -46,6 +46,8 @@ class Chat : Fragment() {
         appUtil = AppUtil()
         myId = appUtil.getUid()!!
 
+
+
         hisId = args.uniqueId
         hisName = args.userName
 
@@ -55,7 +57,10 @@ class Chat : Fragment() {
             val message = binding!!.typeBox.text.toString()
             if(message.isEmpty())
                 Toast.makeText(requireContext(), "Write something...", Toast.LENGTH_SHORT).show()
-            else sendMessage(message)
+            else {
+                sendMessage(message)
+                binding!!.typeBox.text!!.clear()
+            }
         }
 
         if(chatId == null) checkChat(hisId!!)
@@ -172,7 +177,13 @@ class Chat : Fragment() {
             }
         }
 
-        binding!!.messagesRecyclerView.layoutManager = LinearLayoutManager(requireContext().applicationContext)
+        try {
+            binding!!.messagesRecyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
+        } catch (e: Exception) {
+            Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+        }
+
+
         binding!!.messagesRecyclerView.adapter = firebaseRecyclerAdapter
         firebaseRecyclerAdapter!!.startListening()
     }
