@@ -24,7 +24,7 @@
     </style>
 
     <style name="ContactCard">
-        <item name="android:background">#B4C2EC</item>
+        <item name="android:background">#FAF8F8</item>
         <item name="cornerRadius">10dp</item>
     </style>
 
