@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/chat_nav_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chat_nav_graph"
     app:startDestination="@id/chat2">
 
     <fragment
         android:id="@+id/chat2"
         android:name="com.stp.chitchat.Chat"
-        android:label="Chat" />
+        android:label="Chat" >
+        <action
+            android:id="@+id/action_chat2_to_otherUserProfile"
+            app:destination="@id/otherUserProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/otherUserProfile"
+        android:name="com.stp.chitchat.OtherUserProfile"
+        android:label="fragment_other_user_profile"
+        tools:layout="@layout/fragment_other_user_profile" />
 </navigation>
