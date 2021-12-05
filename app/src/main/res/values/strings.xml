@@ -22,4 +22,6 @@
     <string name="back">Back</string>
     <string name="type_here">Type here...</string>
     <string name="send">Send</string>
+    <string name="credit">Made by <Strong>Akshay Khare</Strong></string>
+    <string name="chats">Chats</string>
 </resources>

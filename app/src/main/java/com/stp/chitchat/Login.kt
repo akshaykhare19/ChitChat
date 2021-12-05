@@ -95,7 +95,6 @@ class Login : Fragment() {
 
     private fun checkData() : Boolean {
         number = binding!!.phoneNumber.text.toString().trim()
-//        name = binding!!.userName.text.toString()
 
         when {
             number!!.isEmpty() -> {
@@ -115,13 +114,6 @@ class Login : Fragment() {
                 }
                 return false
             }
-//            name.isEmpty() -> {
-//                binding!!.userNameLayout.apply {
-//                    error = "Field is required"
-//                    requestFocus()
-//                }
-//                return false
-//            }
             else -> return true
         }
     }
@@ -167,9 +159,9 @@ class Login : Fragment() {
                         auth.uid!!
                     )
                     databaseReference.child(auth.uid!!).setValue(user)
-//                    val userNum = auth.currentUser!!.phoneNumber!!
-//                    val authId = auth.uid
-                    val action = LoginDirections.actionLoginToDashboard()
+                    val userNum = auth.currentUser!!.phoneNumber!!
+                    val authId = auth.uid
+                    val action = LoginDirections.actionLoginToUserData(userNum, authId!!)
                     findNavController().navigate(action)
                 }
                 else {

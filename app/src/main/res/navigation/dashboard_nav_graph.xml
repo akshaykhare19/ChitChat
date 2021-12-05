@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/dashboard_nav_graph"
+    app:startDestination="@id/dashboard2">
+
+    <fragment
+        android:id="@+id/dashboard2"
+        android:name="com.stp.chitchat.Dashboard"
+        android:label="Dashboard" />
+    <fragment
+        android:id="@+id/userProfile"
+        android:name="com.stp.chitchat.UserProfile"
+        android:label="UserProfile" />
+</navigation>

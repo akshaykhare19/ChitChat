@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/login">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.stp.chitchat.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_userData"
+            app:destination="@id/userData" />
+    </fragment>
+    <fragment
+        android:id="@+id/userData"
+        android:name="com.stp.chitchat.UserData"
+        android:label="fragment_user_data"
+        tools:layout="@layout/fragment_user_data" >
+        <argument
+            android:name="phoneNumber"
+            app:argType="string"
+            android:defaultValue="0000000000" />
+        <argument
+            android:name="authId"
+            app:argType="string" />
+    </fragment>
+</navigation>

@@ -35,10 +35,10 @@ class Dashboard : Fragment(), ContactClicked {
 
     override fun onStart() {
         super.onStart()
-        if (auth.currentUser == null) {
-            val action = DashboardDirections.actionDashboardToLogin()
-            findNavController().navigate(action)
-        }
+//        if (auth.currentUser == null) {
+//            val action = DashboardDirections.actionDashboardToLogin()
+//            findNavController().navigate(action)
+//        }
     }
 
     override fun onCreateView(
@@ -77,28 +77,29 @@ class Dashboard : Fragment(), ContactClicked {
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.action_bar_buttons, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_sign_out -> {
-            auth.signOut()
-            val action = DashboardDirections.actionDashboardToLogin()
-            findNavController().navigate(action)
-            true
-        }
-
-        R.id.action_profile -> {
-            val action = DashboardDirections.actionDashboardToUserProfile()
-            findNavController().navigate(action)
-            true
-        }
-
-        else -> {
-            super.onOptionsItemSelected(item)
-        }
-    }
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.action_bar_buttons, menu)
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+////        R.id.action_sign_out -> {
+////            auth.signOut()
+////            val action = DashboardDirections.actionDashboardToLogin()
+////            findNavController().navigate(action)
+////            true
+////        }
+////#b651e1
+////#fffead
+//        R.id.action_profile -> {
+//            val action = DashboardDirections.actionDashboardToUserProfile()
+//            findNavController().navigate(action)
+//            true
+//        }
+//
+//        else -> {
+//            super.onOptionsItemSelected(item)
+//        }
+//    }
 
 
     private fun getMobileContact() {
@@ -173,8 +174,8 @@ class Dashboard : Fragment(), ContactClicked {
     override fun onContactClicked(item: UserModel) {
         val hisId = item.userId
         val hisName = item.userName
-        val action = DashboardDirections.actionDashboardToChat(hisId, hisName)
-        findNavController().navigate(action)
+//        val action = DashboardDirections.actionDashboardToChat(hisId, hisName)
+//        findNavController().navigate(action)
     }
 
 
