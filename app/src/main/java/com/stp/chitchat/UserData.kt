@@ -19,14 +19,17 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.stp.chitchat.activities.MainActivity
 import com.stp.chitchat.databinding.FragmentUserDataBinding
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 
 class UserData : Fragment() {
 
-//    val args: UserDataArgs by navArgs()
+    val args: UserDataArgs by navArgs()
 
     private var _binding: FragmentUserDataBinding? = null
     private val binding get() = _binding
@@ -49,8 +52,12 @@ class UserData : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentUserDataBinding.inflate(inflater, container, false)
 
-//        userNumber = args.userPhoneNumber
-//        userAuthId = args.userId
+        userNumber = args.phoneNumber
+        userAuthId = args.authId
+
+        auth = FirebaseAuth.getInstance()
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+        storageReference = FirebaseStorage.getInstance().reference
 
         binding!!.confirmDataBtn.setOnClickListener {
             if(checkData()) {
@@ -96,9 +103,9 @@ class UserData : Fragment() {
         }
     }
 
-    private fun uploadData(name: String, status: String, image: Uri) = kotlin.run {
+    private fun uploadData(name: String, bio: String, image: Uri) = kotlin.run {
         Toast.makeText(requireContext(), "1. abhi update nahi hua", Toast.LENGTH_SHORT).show()
-        storageReference?.child(auth!!.uid!!)?.putFile(image)
+        storageReference?.child(auth!!.uid!! + AppConstants.PATH)?.putFile(image)
             ?.addOnSuccessListener {
                 Toast.makeText(requireContext(), "2. abhi update nahi hua", Toast.LENGTH_SHORT).show()
                 val task = it.storage.downloadUrl
@@ -108,20 +115,23 @@ class UserData : Fragment() {
                     Toast.makeText(requireContext(), "4. abhi update nahi hua, map se just pehle", Toast.LENGTH_SHORT).show()
                     val map = mapOf(
                         "userName" to name,
-                        "userStatus" to status,
-                        "profilePhotoUrl" to userProfilePictureUrl
+                        "userBio" to bio,
+                        "userImage" to userProfilePictureUrl
                     )
-                    val userInfo = UserModel(
-                        userNumber,
-                        name,
-                        userProfilePictureUrl!!,
-                        status,
-                        userAuthId)
-                    Toast.makeText(requireContext(), "5. abhi update nahi hua, map to ban gaya", Toast.LENGTH_SHORT).show()
-                    databaseReference?.child(userAuthId)?.setValue(userInfo)
-                    Toast.makeText(requireContext(), "6. ab update ho gaya", Toast.LENGTH_SHORT).show()
-                    val action = UserDataDirections.actionUserDataToDashboard()
-                    findNavController().navigate(action)
+                    databaseReference!!.child(auth!!.uid!!).updateChildren(map)
+//                    val userInfo = UserModel(
+//                        userNumber,
+//                        name,
+//                        userProfilePictureUrl!!,
+//                        bio,
+//                        userAuthId)
+//                    Toast.makeText(requireContext(), "5. abhi update nahi hua, map to ban gaya", Toast.LENGTH_SHORT).show()
+//                    databaseReference?.child(userAuthId)?.setValue(userInfo)
+//                    Toast.makeText(requireContext(), "6. ab update ho gaya", Toast.LENGTH_SHORT).show()
+//                    val action = UserDataDirections.actionUserDataToDashboard()
+//                    findNavController().navigate(action)
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                    requireActivity().finish()
                 }
             }
     }

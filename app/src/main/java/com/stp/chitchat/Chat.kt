@@ -28,7 +28,7 @@ class Chat : Fragment() {
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding
 
-    val args: ChatArgs by navArgs()
+//    val args: ChatArgs by navArgs()
 
     private var hisId: String? = null
     private var hisName: String? = null
@@ -48,8 +48,8 @@ class Chat : Fragment() {
 
 
 
-        hisId = args.uniqueId
-        hisName = args.userName
+//        hisId = args.uniqueId
+//        hisName = args.userName
 
         binding!!.hisName.text = hisName
 
@@ -197,8 +197,4 @@ class Chat : Fragment() {
             firebaseRecyclerAdapter!!.stopListening()
     }
 
-    fun onBackPressed() {
-        val action = ChatDirections.actionChatToDashboard()
-        findNavController().navigate(action)
-    }
 }
