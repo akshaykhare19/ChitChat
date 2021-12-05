@@ -1,6 +1,8 @@
 package com.stp.chitchat
 
 import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.*
@@ -14,6 +16,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.stp.chitchat.activities.ChattingActivity
 import com.stp.chitchat.databinding.FragmentDashboardBinding
 
 class Dashboard : Fragment(), ContactClicked {
@@ -174,24 +177,28 @@ class Dashboard : Fragment(), ContactClicked {
     override fun onContactClicked(item: UserModel) {
         val hisId = item.userId
         val hisName = item.userName
+        val intent = Intent(requireActivity(), ChattingActivity::class.java)
+        intent.putExtra("hisId", hisId)
+        intent.putExtra("hisName", hisName)
+        startActivity(intent)
 //        val action = DashboardDirections.actionDashboardToChat(hisId, hisName)
 //        findNavController().navigate(action)
     }
 
 
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<out String>,
-//        grantResults: IntArray
-//    ) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-//        when (requestCode) {
-//            AppConstants.CONTACT_PERMISSION -> {
-//                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-//                    getMobileContact()
-//                else Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_SHORT)
-//                    .show()
-//            }
-//        }
-//    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            AppConstants.CONTACT_PERMISSION -> {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    getMobileContact()
+                else Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
 }

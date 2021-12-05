@@ -9,6 +9,21 @@ import androidx.core.content.ContextCompat
 
 class AppPermission {
 
+    fun isStorageOk(context: Context): Boolean {
+        return ContextCompat.checkSelfPermission(
+            context,
+            android.Manifest.permission.READ_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    fun requestStoragePermission(activity: Activity) {
+        ActivityCompat.requestPermissions(
+            activity,
+            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+            AppConstants.STORAGE_PERMISSION
+        )
+    }
+
     fun isContactPermission(context: Context): Boolean {
         return ContextCompat.checkSelfPermission(
             context,

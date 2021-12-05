@@ -7,7 +7,7 @@ import com.google.firebase.database.*
 class AppRepository {
 
     private var mutableLiveData: MutableLiveData<UserModel>? = null
-    private lateinit var databaseReference: DatabaseReference
+    private var databaseReference: DatabaseReference? = null
     private val appUtil = AppUtil()
 
     object StaticFunction {
@@ -23,7 +23,7 @@ class AppRepository {
         if(mutableLiveData == null)
             mutableLiveData = MutableLiveData()
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(appUtil.getUid()!!)
-        databaseReference.addValueEventListener(object : ValueEventListener{
+        databaseReference?.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()) {
                     val userModel = snapshot.getValue(UserModel::class.java)
@@ -40,9 +40,29 @@ class AppRepository {
     }
 
     fun updateUserName(name: String) {
-        val databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(appUtil.getUid()!!)
+        val databaseReference = FirebaseDatabase
+            .getInstance().getReference("Users")
+            .child(appUtil.getUid()!!)
 
         val map = mapOf("userName" to name)
+        databaseReference.updateChildren(map)
+    }
+
+    fun updateUserBio(bio: String) {
+        val databaseReference = FirebaseDatabase
+            .getInstance().getReference("Users")
+            .child(appUtil.getUid()!!)
+
+        val map = mapOf<String, Any>("userBio" to bio)
+        databaseReference.updateChildren(map)
+    }
+
+    fun updateUserImage(imagePath: String) {
+        val databaseReference = FirebaseDatabase
+            .getInstance().getReference("Users")
+            .child(appUtil.getUid()!!)
+
+        val map = mapOf<String, Any>("userImage" to imagePath)
         databaseReference.updateChildren(map)
     }
 

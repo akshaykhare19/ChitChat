@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/chat_nav_graph"
-    app:startDestination="@id/chat2">
+    app:startDestination="@id/chat">
 
     <fragment
-        android:id="@+id/chat2"
+        android:id="@+id/chat"
         android:name="com.stp.chitchat.Chat"
         android:label="Chat" >
         <action

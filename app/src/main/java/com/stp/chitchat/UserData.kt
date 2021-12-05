@@ -29,7 +29,7 @@ import com.theartofdev.edmodo.cropper.CropImageView
 
 class UserData : Fragment() {
 
-    val args: UserDataArgs by navArgs()
+//    val args: UserDataArgs by navArgs()
 
     private var _binding: FragmentUserDataBinding? = null
     private val binding get() = _binding
@@ -52,8 +52,8 @@ class UserData : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentUserDataBinding.inflate(inflater, container, false)
 
-        userNumber = args.phoneNumber
-        userAuthId = args.authId
+//        userNumber = args.phoneNumber
+//        userAuthId = args.authId
 
         auth = FirebaseAuth.getInstance()
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")
@@ -162,13 +162,14 @@ class UserData : Fragment() {
         }
     }
 
-        private val permissionRequestLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()) {
-        if(it) pickImage()
-        else Toast.makeText(requireContext(), "Storage permission denied", Toast.LENGTH_SHORT).show()
-    }
+//        private val permissionRequestLauncher = registerForActivityResult(
+//        ActivityResultContracts.RequestPermission()) {
+//        if(it) pickImage()
+//        else Toast.makeText(requireContext(), "Storage permission denied", Toast.LENGTH_SHORT).show()
+//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         when(requestCode) {
             CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
                 val result = CropImage.getActivityResult(data)

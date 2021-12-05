@@ -11,8 +11,18 @@ class ProfileViewModel: ViewModel() {
         return appRepository.getUser()
     }
 
-    fun updateUserName(name: String) {
-        appRepository.updateUserName(name)
+    fun updateUserName(name: String?) {
+        appRepository.updateUserName(name!!)
     }
+
+    fun updateUserBio(bio: String) {
+        appRepository.updateUserBio(bio)
+    }
+
+    fun updateUserImage(imagePath: String) {
+        appRepository.updateUserImage(imagePath)
+    }
+
+
 
 }

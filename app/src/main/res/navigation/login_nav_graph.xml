@@ -19,12 +19,5 @@
         android:name="com.stp.chitchat.UserData"
         android:label="fragment_user_data"
         tools:layout="@layout/fragment_user_data" >
-        <argument
-            android:name="phoneNumber"
-            app:argType="string"
-            android:defaultValue="0000000000" />
-        <argument
-            android:name="authId"
-            app:argType="string" />
     </fragment>
 </navigation>

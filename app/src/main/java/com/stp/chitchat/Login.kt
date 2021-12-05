@@ -153,15 +153,15 @@ class Login : Fragment() {
                     // Sign in success, update UI with the signed-in user's information
                     val user = UserModel(
                         auth.currentUser!!.phoneNumber!!,
-                        name,
+                        "",
                         "",
                         "",
                         auth.uid!!
                     )
                     databaseReference.child(auth.uid!!).setValue(user)
-                    val userNum = auth.currentUser!!.phoneNumber!!
-                    val authId = auth.uid
-                    val action = LoginDirections.actionLoginToUserData(userNum, authId!!)
+//                    val userNum = auth.currentUser!!.phoneNumber!!
+//                    val authId = auth.uid
+                    val action = LoginDirections.actionLoginToUserData()
                     findNavController().navigate(action)
                 }
                 else {
