@@ -163,7 +163,7 @@ class Dashboard : Fragment(), ContactClicked {
                         }
                     }
                     binding!!.contactsRecyclerViewList.apply {
-                        layoutManager = LinearLayoutManager(requireContext())
+                        layoutManager = LinearLayoutManager(context)
                         setHasFixedSize(true)
                         adapter = ContactsAdapter(this@Dashboard, appContacts)
                     }

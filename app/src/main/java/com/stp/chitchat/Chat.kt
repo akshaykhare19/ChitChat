@@ -33,7 +33,6 @@ class Chat : Fragment() {
 
     lateinit var userInfoReceiver: OtherUserInfoReceiver
 
-//    val args: ChatArgs by navArgs()
 
     private var hisId: String? = null
     private var hisName: String? = null
@@ -69,6 +68,11 @@ class Chat : Fragment() {
                 sendMessage(message)
                 binding!!.typeBox.text!!.clear()
             }
+        }
+
+        binding!!.userInfo.setOnClickListener {
+            val action = ChatDirections.actionChat2ToOtherUserProfile(hisId!!)
+            findNavController().navigate(action)
         }
 
         if(chatId == null) checkChat(hisId!!)

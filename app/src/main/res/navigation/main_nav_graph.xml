@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/dashboard_nav_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dashboard_nav_graph"
     app:startDestination="@id/dashboard">
 
     <fragment
@@ -14,7 +16,11 @@
     <fragment
         android:id="@+id/userProfile"
         android:name="com.stp.chitchat.UserProfile"
-        android:label="UserProfile" />
+        android:label="UserProfile" >
+        <action
+            android:id="@+id/action_userProfile_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </fragment>
     <activity
         android:id="@+id/chattingActivity"
         android:name="com.stp.chitchat.activities.ChattingActivity"
@@ -26,4 +32,9 @@
             android:name="userName"
             app:argType="string" />
     </activity>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.stp.chitchat.activities.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
 </navigation>

@@ -13,11 +13,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultRegistry
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -58,8 +61,17 @@ class UserProfile : Fragment() {
             binding!!.name.text = it.userName
         })
 
+        val getImage =
+                registerForActivityResult(ActivityResultContracts.GetContent()) {
+                    pickImage()
+                    uploadImage(it)
+                }
+
         binding!!.addPhotoBtn.setOnClickListener {
-            if(appPermission.isStorageOk(requireContext())) pickImage()
+            if(appPermission.isStorageOk(requireContext())) {
+                getImage.launch("image/*")
+//                getImage.launch("")
+            }
             else appPermission.requestStoragePermission(requireActivity())
         }
 
@@ -71,26 +83,11 @@ class UserProfile : Fragment() {
             getUserBioEditDialog()
         }
 
-//
-//        val requestPermissionLauncher =
-//            registerForActivityResult(
-//                ActivityResultContracts.RequestPermission()
-//            ) { isGranted: Boolean ->
-//                if (isGranted) {
-//                    // Permission is granted. Continue the action or workflow in your
-//                    // app.
-//                    pickImage()
-//                } else {
-//                    Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_SHORT).show()
-//                    // Explain to the user that the feature is unavailable because the
-//                    // features requires a permission that the user has denied. At the
-//                    // same time, respect the user's decision. Don't link to system
-//                    // settings in an effort to convince the user to change their
-//                    // decision.
-//                }
-//            }
-//
-//        requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+        binding!!.signOutButton.setOnClickListener {
+            auth.signOut()
+            val action = UserProfileDirections.actionUserProfileToLoginActivity()
+            findNavController().navigate(action)
+        }
 
         return binding?.root
     }
