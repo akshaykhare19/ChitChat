@@ -46,11 +46,15 @@ class Chat : Fragment() {
         appUtil = AppUtil()
         myId = appUtil.getUid()!!
 
-
+        val bundle = arguments
+         hisId = bundle!!.getString("hisId")
+        hisName = bundle.getString("hisName")
 
 //        hisId = args.uniqueId
 //        hisName = args.userName
 
+//        hisId = requireArguments().getString("hisId")
+//        hisName = arguments?.getString("hisName")
         binding!!.hisName.text = hisName
 
         binding!!.sendBtn.setOnClickListener {
@@ -178,7 +182,13 @@ class Chat : Fragment() {
         }
 
         try {
-            binding!!.messagesRecyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
+            binding!!.messagesRecyclerView.apply {
+                layoutManager = LinearLayoutManager(activity?.applicationContext).apply {
+                    stackFromEnd = true     //items gravity sticks to bottom
+                    reverseLayout = false   //item list sorting(new messages start from the bottom)
+                }
+            }
+
         } catch (e: Exception) {
             Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
         }

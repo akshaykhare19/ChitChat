@@ -6,9 +6,24 @@
     <fragment
         android:id="@+id/dashboard"
         android:name="com.stp.chitchat.Dashboard"
-        android:label="Dashboard" />
+        android:label="Dashboard" >
+        <action
+            android:id="@+id/action_dashboard_to_chattingActivity"
+            app:destination="@id/chattingActivity" />
+    </fragment>
     <fragment
         android:id="@+id/userProfile"
         android:name="com.stp.chitchat.UserProfile"
         android:label="UserProfile" />
+    <activity
+        android:id="@+id/chattingActivity"
+        android:name="com.stp.chitchat.activities.ChattingActivity"
+        android:label="ChattingActivity" >
+        <argument
+            android:name="uniqueUserId"
+            app:argType="string" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+    </activity>
 </navigation>

@@ -8,6 +8,7 @@ import android.provider.ContactsContract
 import android.view.*
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,13 +37,13 @@ class Dashboard : Fragment(), ContactClicked {
         setHasOptionsMenu(true)
     }
 
-    override fun onStart() {
-        super.onStart()
+//    override fun onStart() {
+//        super.onStart()
 //        if (auth.currentUser == null) {
-//            val action = DashboardDirections.actionDashboardToLogin()
-//            findNavController().navigate(action)
-//        }
-    }
+////            val action = DashboardDirections.actionDashboardToLogin()
+////            findNavController().navigate(action)
+////        }
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -177,28 +178,25 @@ class Dashboard : Fragment(), ContactClicked {
     override fun onContactClicked(item: UserModel) {
         val hisId = item.userId
         val hisName = item.userName
-        val intent = Intent(requireActivity(), ChattingActivity::class.java)
-        intent.putExtra("hisId", hisId)
-        intent.putExtra("hisName", hisName)
-        startActivity(intent)
-//        val action = DashboardDirections.actionDashboardToChat(hisId, hisName)
-//        findNavController().navigate(action)
+
+        val action = DashboardDirections.actionDashboardToChattingActivity(hisId, hisName)
+        findNavController().navigate(action)
     }
 
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            AppConstants.CONTACT_PERMISSION -> {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    getMobileContact()
-                else Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
-    }
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        when (requestCode) {
+//            AppConstants.CONTACT_PERMISSION -> {
+//                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+//                    getMobileContact()
+//                else Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_SHORT)
+//                    .show()
+//            }
+//        }
+//    }
 }
