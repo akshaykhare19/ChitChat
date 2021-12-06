@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +28,8 @@ class Dashboard : Fragment(), ContactClicked {
     private lateinit var appPermission: AppPermission
     private lateinit var mobileContacts: ArrayList<UserModel>
     private lateinit var appContacts: ArrayList<UserModel>
+
+    private val sharedViewModel: ChatViewModel by activityViewModels()
 
 
     private lateinit var auth: FirebaseAuth
@@ -178,6 +181,9 @@ class Dashboard : Fragment(), ContactClicked {
     override fun onContactClicked(item: UserModel) {
         val hisId = item.userId
         val hisName = item.userName
+
+//        val chatItem = ChatModel()
+//        val hisChatId = chatItem.chatId
 
         val action = DashboardDirections.actionDashboardToChattingActivity(hisId, hisName)
         findNavController().navigate(action)

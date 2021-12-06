@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +28,8 @@ class Chat : Fragment() {
 
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding
+
+    private val sharedViewModel: ChatViewModel by activityViewModels()
 
 //    val args: ChatArgs by navArgs()
 
@@ -47,7 +50,7 @@ class Chat : Fragment() {
         myId = appUtil.getUid()!!
 
         val bundle = arguments
-         hisId = bundle!!.getString("hisId")
+        hisId = bundle!!.getString("hisId")
         hisName = bundle.getString("hisName")
 
 //        hisId = args.uniqueId
