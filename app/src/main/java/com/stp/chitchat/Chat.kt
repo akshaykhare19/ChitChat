@@ -1,5 +1,6 @@
 package com.stp.chitchat
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.stp.chitchat.activities.ChattingActivity
 import com.stp.chitchat.databinding.FragmentChatBinding
 import com.stp.chitchat.databinding.ReceivedMessageLayoutBinding
 import com.stp.chitchat.databinding.SentMessageLayoutBinding
@@ -30,6 +32,7 @@ class Chat : Fragment() {
     private val binding get() = _binding
 
     private val sharedViewModel: ChatViewModel by activityViewModels()
+    lateinit var userInfoReceiver: OtherUserInfoReceiver
 
 //    val args: ChatArgs by navArgs()
 
@@ -40,6 +43,11 @@ class Chat : Fragment() {
     private lateinit var myId: String
     private var firebaseRecyclerAdapter: FirebaseRecyclerAdapter<MessageModel, MessageViewHolder>? = null
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        userInfoReceiver = context as OtherUserInfoReceiver
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,15 +57,18 @@ class Chat : Fragment() {
         appUtil = AppUtil()
         myId = appUtil.getUid()!!
 
-        val bundle = arguments
-        hisId = bundle!!.getString("hisId")
-        hisName = bundle.getString("hisName")
+//        val bundle = arguments
+//        hisId = bundle!!.getString("hisId")
+//        hisName = bundle.getString("hisName")
 
 //        hisId = args.uniqueId
 //        hisName = args.userName
 
-//        hisId = requireArguments().getString("hisId")
+//        hisId = (activity as ChattingActivity).getString("hisId")
 //        hisName = arguments?.getString("hisName")
+
+        hisId = userInfoReceiver.getId()
+        hisName = userInfoReceiver.getName()
         binding!!.hisName.text = hisName
 
         binding!!.sendBtn.setOnClickListener {
