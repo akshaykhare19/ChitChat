@@ -23,13 +23,12 @@ import com.stp.chitchat.databinding.FragmentDashboardBinding
 
 class Dashboard : Fragment(), ContactClicked {
 
-    private lateinit var _binding: FragmentDashboardBinding
+    private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding
     private lateinit var appPermission: AppPermission
     private lateinit var mobileContacts: ArrayList<UserModel>
     private lateinit var appContacts: ArrayList<UserModel>
 
-    private val sharedViewModel: ChatViewModel by activityViewModels()
 
 
     private lateinit var auth: FirebaseAuth
@@ -51,7 +50,7 @@ class Dashboard : Fragment(), ContactClicked {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
@@ -81,7 +80,7 @@ class Dashboard : Fragment(), ContactClicked {
 
         requestPermissionLauncher.launch(Manifest.permission.READ_CONTACTS)
 
-        return binding.root
+        return binding?.root
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -163,7 +162,7 @@ class Dashboard : Fragment(), ContactClicked {
                             }
                         }
                     }
-                    binding.contactsRecyclerViewList.apply {
+                    binding!!.contactsRecyclerViewList.apply {
                         layoutManager = LinearLayoutManager(requireContext())
                         setHasFixedSize(true)
                         adapter = ContactsAdapter(this@Dashboard, appContacts)

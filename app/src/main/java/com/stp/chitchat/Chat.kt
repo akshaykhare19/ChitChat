@@ -31,7 +31,6 @@ class Chat : Fragment() {
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding
 
-    private val sharedViewModel: ChatViewModel by activityViewModels()
     lateinit var userInfoReceiver: OtherUserInfoReceiver
 
 //    val args: ChatArgs by navArgs()
@@ -57,15 +56,6 @@ class Chat : Fragment() {
         appUtil = AppUtil()
         myId = appUtil.getUid()!!
 
-//        val bundle = arguments
-//        hisId = bundle!!.getString("hisId")
-//        hisName = bundle.getString("hisName")
-
-//        hisId = args.uniqueId
-//        hisName = args.userName
-
-//        hisId = (activity as ChattingActivity).getString("hisId")
-//        hisName = arguments?.getString("hisName")
 
         hisId = userInfoReceiver.getId()
         hisName = userInfoReceiver.getName()

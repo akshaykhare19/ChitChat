@@ -71,26 +71,26 @@ class UserProfile : Fragment() {
             getUserBioEditDialog()
         }
 
-
-        val requestPermissionLauncher =
-            registerForActivityResult(
-                ActivityResultContracts.RequestPermission()
-            ) { isGranted: Boolean ->
-                if (isGranted) {
-                    // Permission is granted. Continue the action or workflow in your
-                    // app.
-                    pickImage()
-                } else {
-                    Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_SHORT).show()
-                    // Explain to the user that the feature is unavailable because the
-                    // features requires a permission that the user has denied. At the
-                    // same time, respect the user's decision. Don't link to system
-                    // settings in an effort to convince the user to change their
-                    // decision.
-                }
-            }
-
-        requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+//
+//        val requestPermissionLauncher =
+//            registerForActivityResult(
+//                ActivityResultContracts.RequestPermission()
+//            ) { isGranted: Boolean ->
+//                if (isGranted) {
+//                    // Permission is granted. Continue the action or workflow in your
+//                    // app.
+//                    pickImage()
+//                } else {
+//                    Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_SHORT).show()
+//                    // Explain to the user that the feature is unavailable because the
+//                    // features requires a permission that the user has denied. At the
+//                    // same time, respect the user's decision. Don't link to system
+//                    // settings in an effort to convince the user to change their
+//                    // decision.
+//                }
+//            }
+//
+//        requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
 
         return binding?.root
     }
