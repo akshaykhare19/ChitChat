@@ -21,6 +21,10 @@
         <item name="background">@color/app_theme_light</item>
     </style>
 
+    <style name="HeaderText">
+        <item name="android:textColor">@color/header_light</item>
+    </style>
+
     <style name="ThemeColor">
         <item name="android:background">@color/app_theme_light</item>
     </style>
@@ -30,7 +34,7 @@
     </style>
 
     <style name="ContactCard">
-        <item name="android:background">#FAF8F8</item>
+        <item name="android:background">@color/background_light</item>
         <item name="cornerRadius">10dp</item>
     </style>
 
