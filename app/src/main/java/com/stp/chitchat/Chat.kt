@@ -107,7 +107,8 @@ class Chat : Fragment() {
 
     private fun createChat(message: String) {
         var databaseReference = FirebaseDatabase.getInstance().getReference("ChatList").child(myId)
-        chatId = databaseReference.push().key
+//        chatId = databaseReference.push().key
+        chatId = myId + hisId
         val myChatModel = ChatModel(chatId!!, message, System.currentTimeMillis().toString(), hisId!!)
         databaseReference.child(chatId!!).setValue(myChatModel)
 
