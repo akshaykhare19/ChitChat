@@ -3,7 +3,7 @@
     <style name="Theme.ChitChat" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/app_theme_dark</item>
-        <item name="colorPrimaryVariant">@color/header_dark</item>
+        <item name="colorPrimaryVariant">@color/app_theme_light</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/app_theme_dark</item>

@@ -70,7 +70,6 @@ class UserData : Fragment() {
                 pickImage()
             }
             else storageRequestPermission()
-            Toast.makeText(requireContext(), "Under Progress", Toast.LENGTH_SHORT).show()
         }
 
         return binding?.root
@@ -104,15 +103,11 @@ class UserData : Fragment() {
     }
 
     private fun uploadData(name: String, bio: String, image: Uri) = kotlin.run {
-        Toast.makeText(requireContext(), "1. abhi update nahi hua", Toast.LENGTH_SHORT).show()
         storageReference?.child(auth!!.uid!! + AppConstants.PATH)?.putFile(image)
             ?.addOnSuccessListener {
-                Toast.makeText(requireContext(), "2. abhi update nahi hua", Toast.LENGTH_SHORT).show()
                 val task = it.storage.downloadUrl
                 task.addOnCompleteListener { uri ->
-                    Toast.makeText(requireContext(), "3. abhi update nahi hua", Toast.LENGTH_SHORT).show()
                     userProfilePictureUrl = uri.result.toString()
-                    Toast.makeText(requireContext(), "4. abhi update nahi hua, map se just pehle", Toast.LENGTH_SHORT).show()
                     val map = mapOf(
                         "userName" to name,
                         "userBio" to bio,
