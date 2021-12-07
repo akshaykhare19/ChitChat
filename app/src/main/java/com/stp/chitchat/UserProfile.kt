@@ -63,7 +63,7 @@ class UserProfile : Fragment() {
 
         val getImage =
                 registerForActivityResult(ActivityResultContracts.GetContent()) {
-                    pickImage()
+//                    pickImage()
                     uploadImage(it)
                 }
 

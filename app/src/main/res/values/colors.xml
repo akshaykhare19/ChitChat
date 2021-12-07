@@ -9,13 +9,13 @@
     <color name="white">#FFFFFFFF</color>
 
     //dark
-    <color name="app_theme_dark">#F84588EA</color>
-    <color name="header_dark">#F4FF81</color>
+    <color name="app_theme_dark">#B6C2F5</color>
+    <color name="header_dark">#FFF0AD</color>
     <color name="background_dark">#DC404249</color>
 
     //light
-    <color name="app_theme_light">#F80A3677</color>
-    <color name="header_light">#F1BA2F</color>
+    <color name="app_theme_light">#667CE0</color>
+    <color name="header_light">#FFF0AD</color>
     <color name="background_light">#DCD7DBE6</color>
 
 </resources>
