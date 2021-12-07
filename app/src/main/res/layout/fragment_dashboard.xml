@@ -17,7 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="@color/app_theme_light"
+            style="@style/ActionBar"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,8 +28,8 @@
                     android:id="@+id/his_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/HeaderText"
                     android:text="@string/chats"
+                    style="@style/Texts"
                     android:textSize="28sp"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"

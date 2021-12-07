@@ -46,7 +46,7 @@
 
 
     <style name="ActionBar">
-        <item name="android:background">@color/app_theme_dark</item>
+        <item name="android:background">@color/app_theme_light</item>
     </style>
 
 

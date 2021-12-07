@@ -39,7 +39,7 @@
     </style>
 
     <style name="ActionBar">
-        <item name="android:background">@color/app_theme_light</item>
+        <item name="android:background">@color/app_theme_dark</item>
     </style>
 
 </resources>
