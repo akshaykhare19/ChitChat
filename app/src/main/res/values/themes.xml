@@ -18,6 +18,7 @@
 
     <style name="Heading">
         <item name="android:textColor">@color/header_light</item>
+        <item name="background">@color/app_theme_light</item>
     </style>
 
     <style name="ThemeColor">

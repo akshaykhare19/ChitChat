@@ -15,7 +15,7 @@
 
     //light
     <color name="app_theme_light">#667CE0</color>
-    <color name="header_light">#FFF0AD</color>
+    <color name="header_light">#FFCF00</color>
     <color name="background_light">#DCD7DBE6</color>
 
 </resources>
