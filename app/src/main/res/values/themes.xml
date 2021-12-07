@@ -20,6 +20,10 @@
         <item name="android:textColor">@color/header_light</item>
     </style>
 
+    <style name="ThemeColor">
+        <item name="android:background">@color/app_theme_light</item>
+    </style>
+
     <style name="Texts">
         <item name="android:textColor">@color/black</item>
     </style>
